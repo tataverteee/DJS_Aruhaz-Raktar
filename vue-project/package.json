@@ -4,18 +4,19 @@
   "private": true,
   "type": "module",
   "scripts": {
-  "dev": "vite",
-  "server": "nodemon server/server.js",
-  "start": "concurrently \"npm run server\" \"npm run dev\"",
-  "build": "vite build"
+    "dev": "vite",
+    "server": "nodemon server/server.js",
+    "start": "concurrently \"npm run server\" \"npm run dev\"",
+    "build": "vite build"
   },
   "dependencies": {
+    "express": "^5.3.0",
     "vue": "rc"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^6.0.8",
     "concurrently": "^10.0.5",
-    "nodemon": "^3.1.14",
+    "nodemon": "^1.14.10",
     "vite": "^8.2.2",
     "vite-plugin-vue-devtools": "^8.2.1"
   },
