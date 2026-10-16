@@ -1,0 +1,67 @@
+# Manual API tests for server/server.js
+# VS Code: install "REST Client" (humao.rest-client), then click "Send Request"
+# above a request. JetBrains IDEs run .http files out of the box.
+# Start the server first:  npm run server   (or npm start)
+
+@baseUrl = http://localhost:3000
+
+### ---- general ---------------------------------------------------------------
+
+### Health check (also checks the database)
+GET {{baseUrl}}/api/health
+
+### Hello message
+GET {{baseUrl}}/api/message
+
+### ---- item categories and items ---------------------------------------------
+
+### All item categories (10)
+GET {{baseUrl}}/api/itemtypes
+
+### All items (20)
+GET {{baseUrl}}/api/items
+
+### Items of one category (8 = Auto parts -> items 16 and 17)
+GET {{baseUrl}}/api/items?type=8
+
+### One item
+GET {{baseUrl}}/api/items/5
+
+### Item that does not exist -> 404
+GET {{baseUrl}}/api/items/999
+
+### Invalid id -> 400
+GET {{baseUrl}}/api/items/abc
+
+### Invalid category filter -> 400
+GET {{baseUrl}}/api/items?type=abc
+
+### ---- suppliers -------------------------------------------------------------
+
+### All suppliers (20)
+GET {{baseUrl}}/api/suppliers
+
+### ---- outward orders --------------------------------------------------------
+
+### All orders, newest first, with item count and total
+GET {{baseUrl}}/api/orders
+
+### Orders by status: pending, packed, shipped, delivered, cancelled
+GET {{baseUrl}}/api/orders?status=pending
+
+### One order with its lines
+GET {{baseUrl}}/api/orders/16
+
+### Order that does not exist -> 404
+GET {{baseUrl}}/api/orders/999
+
+### ---- inward deliveries -----------------------------------------------------
+
+### All deliveries with supplier name
+GET {{baseUrl}}/api/inward
+
+### One delivery with its palettes (13 = received, 1 = stored, 20 = ordered)
+GET {{baseUrl}}/api/inward/13
+
+### Delivery that does not exist -> 404
+GET {{baseUrl}}/api/inward/999
