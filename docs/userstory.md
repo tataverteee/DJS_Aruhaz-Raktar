@@ -24,18 +24,18 @@ hogy meg tudja nézni a raktár tartalmát anélkül, hogy bármit módosíthatn
 /*WEBOLDAL HASZNÁLATA, MINT VIEWER/ÁTLAGOS FELHASZNÁLÓ*/ 
 /* nincs teljesen kész ez a részlet */
 
-/*(normális / main keresés)*/
+
 Viewer bejelentkezik,
 Viewer a főkereső használatával rákeres egy tárgyra,
 hogy megtalálja a kulcsszóhoz tartozó / hasonló kulcsszavakat tartalmazó tárgyakat.
 
 
-/*(gyorskereses weboldal kozepén)*/
+
 Viewer rákattint a keresőmezőre a weboldal közepén, a "Gyors Keresés" alatti részletnél,
 Viewer pontos tárgyazonosítóval (pl. #T-123) keres egy konkrét tárgyat,
 hogy egy pontos tárgyat a - tárgyat.
 
 
-/*(tárhelyek kategóriája, weboldal bal részen)*/
+
 Viewer rátekint a weboldal bal részére, ahol megnézheti a jelenleg elérhető tárhelyek listáját.
 Viewer rákattint az egyik tárhelyre (A-100, B-200, C-300), ami megjeleníti az ott található tárgyak listáját.
