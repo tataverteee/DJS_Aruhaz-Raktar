@@ -4,13 +4,13 @@
 
 | Funkció | Vendég | Raktáros | Admin |
 |---------|:------:|:--------:|:-----:|
-| Bejelentkezés | ✅ | ✅ | ✅ |
-| Termékkészlet lekérdezése | ✅ | ❌ | ❌ |
-| Vásárlói megrendelés rögzítése | ✅ | ❌ | ❌ |
-| Raktárkészlet lekérdezése | ❌ | ✅ | ❌ |
-| Áru átvétel rögzítése | ❌ | ✅ | ❌ |
-| Áru kiadás rögzítése | ❌ | ✅ | ❌ |
-| Raktárban lévő áru mozgatásának rögzítése | ❌ | ✅ | ❌ |
+| Termékkészlet lekérdezése | ✅ | ❌ | ✅ |
+| Vásárlói megrendelés rögzítése | ✅ | ❌ | ✅ |
+| Vásárlói adatok rögzítése | ✅ | ❌ | ✅ |
+| Raktárkészlet lekérdezése | ❌ | ✅ | ✅ |
+| Áru átvétel rögzítése | ❌ | ✅ | ✅ |
+| Áru kiadás rögzítése | ❌ | ✅ | ✅ |
+| Raktárban lévő áru mozgatásának rögzítése | ❌ | ✅ | ✅ |
 | Termékek listájának módosítása | ❌ | ❌ | ✅ |
 | Terméktípusok listájának módosítása | ❌ | ❌ | ✅ |
 | Termék rendelése a raktárba | ❌ | ❌ | ✅ |
@@ -23,6 +23,7 @@
 - A felhasználó bejelentkezik
 - A felhasználó lekérdezi a termékkészletet
 - A felhasználó a vásárló megrendelését rögzíti
+- A felhasználó a vásárló adatait rögzíti
 
 ---
 
