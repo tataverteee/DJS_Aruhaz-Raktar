@@ -1,7 +1,5 @@
 # Raktárkezelő weboldal – Felhasználói történetek (User Stories)
 
-> Minden történet a **"Mint [szerepkör], szeretném [cél], hogy [haszon]"** szerkezetet követi, elfogadási kritériumokkal kiegészítve.
-
 ---
 
 ## Tartalomjegyzék
@@ -9,7 +7,6 @@
 1. [Szerepkörök áttekintése](#1-szerepkörök-áttekintése)
 2. [Felhasználói jogosultságok](#2-felhasználói-jogosultságok)
 3. [Az oldal használata Viewerként](#3-az-oldal-használata-viewerként)
-4. [Nyitott kérdések](#4-nyitott-kérdések)
 
 ---
 
@@ -21,8 +18,6 @@
 | **Manager** | ✅ | ✅ | ✅ | ✅ | ❌ |
 | **Warehouse** | ✅ | ✅ | ❌ | ❌ | ❌ |
 | **Viewer** | ✅ | ✅ | ❌ | ❌ | ❌ |
-
-> A Warehouse szerepkör keresési joga feltételezett, kérlek erősítsd meg.
 
 ---
 
@@ -79,8 +74,6 @@
 
 ## 3. Az oldal használata Viewerként
 
-> ⚠️ **Státusz:** ez a rész még nincs teljesen kész.
-
 ### US-05 – Keresés kulcsszóval (főkereső)
 
 **Mint** Viewer,
@@ -117,12 +110,3 @@
 - [ ] A bal oldali sáv felsorolja az elérhető tárhelyeket (pl. `A-100`, `B-200`, `C-300`).
 - [ ] Egy tárhelyre kattintva megjelenik az ott található tárgyak listája.
 - [ ] Üres tárhely esetén a rendszer jelzi, hogy nincs benne tárgy.
-
----
-
-## 4. Nyitott kérdések
-
-- **Bejelentkezés:** érdemes külön storyt írni rá (US-00), hogy ne kelljen minden történetben ismételni.
-- **Warehouse vs. Viewer:** jelenleg nagyon hasonló a két szerep. Mi a pontos különbség (pl. mennyiségek, tárhelyek pontos helye)?
-- **Hasonló kulcsszavak:** hogyan működjön a „hasonló" keresés (részleges egyezés, elírástűrés, szinonimák)?
-- **Hibakezelés:** mi történik jogosultság nélküli művelet esetén (tiltott oldal, lejárt munkamenet)?
