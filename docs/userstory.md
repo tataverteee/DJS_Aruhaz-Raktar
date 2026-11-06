@@ -15,6 +15,7 @@
 | Terméktípusok listájának módosítása | ❌ | ❌ | ✅ |
 | Termék rendelése a raktárba | ❌ | ❌ | ✅ |
 | Új felhasználó regisztrálása | ❌ | ❌ | ✅ |
+| Statisztikák, kimutatások megtekintése és készítése | ❌ | ❌ | ✅ |
 
 ---
 
@@ -44,3 +45,5 @@
 - A felhasználó módosítja a terméktípusok listáját
 - A felhasználó terméket rendel a raktárba
 - A felhasználó új felhasználót regisztrál
+- A felhasználó kimutatásokat csinál és tekint meg
+- A felhasználó statisztikai adatokat tekint meg
