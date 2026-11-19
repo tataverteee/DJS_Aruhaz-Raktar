@@ -31,6 +31,16 @@ app.get('/api/login/users', async (req, res) => {
   res.json(users)
 })
 
+
+
+app.get('/api/request/products', async (req, res) => {
+  res.json({ message: 'Sziamia'})
+})
+
+
+
+
+
 app.use((err, req, res, next) => {
   console.error(err)
   res.status(500).json({ error: 'internal server error' })
