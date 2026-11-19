@@ -2,6 +2,11 @@ import express from 'express'
 import sequelize from './db.js'
 import User from './models/User.js'
 
+import requestRouter from './routes/stock.js'
+
+
+
+
 const app = express()
 app.use(express.json())
 
@@ -33,9 +38,7 @@ app.get('/api/login/users', async (req, res) => {
 
 
 
-app.get('/api/request/products', async (req, res) => {
-  res.json({ message: 'Sziamia'})
-})
+app.use('/api/request', requestRouter)
 
 
 

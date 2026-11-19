@@ -1,0 +1,34 @@
+{
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/Thumbs.db": true,
+        "BackEnd/node_modules": true,
+        "docs": true,
+        "FrontEnd": true,
+        "start-all.bat": true,
+        "README.md": true,
+        "start-all.ps1": true,
+        "BackEnd/.gitignore": true,
+        "BackEnd/package-lock.json": true,
+        "BackEnd/package.json": true,
+        ".vscode": true,
+        "BackEnd/database": true
+    },
+    "hide-files.files": [
+        "BackEnd/node_modules",
+        "docs",
+        "FrontEnd",
+        "start-all.bat",
+        "README.md",
+        "start-all.ps1",
+        "BackEnd/.gitignore",
+        "BackEnd/package-lock.json",
+        "BackEnd/package.json",
+        ".vscode",
+        "BackEnd/database"
+    ]
+}
