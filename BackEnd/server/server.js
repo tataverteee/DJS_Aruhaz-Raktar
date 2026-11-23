@@ -2,13 +2,17 @@ import express from 'express'
 import sequelize from './db.js'
 import User from './models/User.js'
 
+import stockRouter from './routes/stock.js'
+import itemsRouter from './routes/items.js'
+import purchaseRouter from './routes/purchase.js'
+
 const app = express()
 app.use(express.json())
 
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*')
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type')
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization')
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS')
   if (req.method === 'OPTIONS') return res.sendStatus(204)
   next()
 })
@@ -31,15 +35,10 @@ app.get('/api/login/users', async (req, res) => {
   res.json(users)
 })
 
-
-
-app.get('/api/request/products', async (req, res) => {
-  res.json({ message: 'Sziamia'})
-})
-
-
-
-
+// Témánkénti routerek
+app.use('/api/stock', stockRouter)
+app.use('/api/items', itemsRouter)
+app.use('/api/purchase', purchaseRouter)
 
 app.use((err, req, res, next) => {
   console.error(err)
