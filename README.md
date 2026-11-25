@@ -71,7 +71,7 @@ A Vite indításkor kiírja a helyi címet (általában `http://localhost:5173`)
 
 ## Csapat
 
-Alma, Miguel és Emanuel.
+Dobi László Márk, Jákli Milán, Salamon Botond.
 
 ## Licenc
 
