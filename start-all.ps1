@@ -1,5 +1,6 @@
 # DJS_Aruhaz-Raktar - mindent telepit es elindit (BackEnd + FrontEnd)
 # Hasznalat: tedd a projekt gyokerebe (ahol a BackEnd es FrontEnd mappa van), majd futtasd a start-all.bat-ot
+# Nem kell hozza admin jog, se C++ fordito.
 
 $ErrorActionPreference = "Continue"
 $root = $PSScriptRoot
@@ -26,35 +27,38 @@ if (-not (Test-Path $frontDir)) { Write-Err "Nem talalom a FrontEnd mappat: $fro
 # --- 2. BackEnd telepites ---
 Write-Step "BackEnd fuggosegek telepitese"
 Push-Location $backDir
+
+# A better-sqlite3 C++ forditot igenyel, ezt nem hasznaljuk: ha benne van a package.json-ban, kivesszuk.
+$pkgPath = Join-Path $backDir "package.json"
+if ((Test-Path $pkgPath) -and ((Get-Content $pkgPath -Raw) -match '"better-sqlite3"')) {
+    Write-Warn "A better-sqlite3 benne van a package.json-ban, kiveszem (forditast igenyel)..."
+    npm uninstall better-sqlite3
+}
+
 npm install
-if ($LASTEXITCODE -ne 0) {
-    Write-Warn "Az npm install hibat adott. Probalom a better-sqlite3 legujabb verziojaval (elore lefordított binaris)..."
-    npm install better-sqlite3@latest
-    if ($LASTEXITCODE -ne 0) {
-        Write-Err "A BackEnd telepites nem sikerult."
-        Write-Warn "Valoszinuleg hianyzik a C++ fordito. Visual Studio Installer -> Modify -> 'Desktop development with C++'."
-        Write-Warn "Vagy hasznalj Node 20 LTS-t. A FrontEnd ettol meg elindul."
-        $backOk = $false
-    } else { $backOk = $true }
-} else { $backOk = $true }
+$backOk = ($LASTEXITCODE -eq 0)
 Pop-Location
-if ($backOk) { Write-Ok "BackEnd kesz." }
+
+if ($backOk) {
+    Write-Ok "BackEnd kesz."
+} else {
+    Write-Err "A BackEnd telepites nem sikerult. Nezd meg a fenti hibauzenetet. A FrontEnd ettol meg elindul."
+}
 
 # --- 3. FrontEnd telepites ---
 Write-Step "FrontEnd fuggosegek telepitese"
 Push-Location $frontDir
 npm install
-if ($LASTEXITCODE -ne 0) {
-    Write-Err "A FrontEnd telepites nem sikerult."
-    $frontOk = $false
-} else {
-    $frontOk = $true
+$frontOk = ($LASTEXITCODE -eq 0)
+if ($frontOk) {
     # ha a vite valamiert nincs meg, potoljuk
     if (-not (Test-Path (Join-Path $frontDir "node_modules\.bin\vite.cmd"))) {
         Write-Warn "A vite hianyzik, telepitem..."
         npm install -D vite
     }
     Write-Ok "FrontEnd kesz."
+} else {
+    Write-Err "A FrontEnd telepites nem sikerult."
 }
 Pop-Location
 

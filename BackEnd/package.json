@@ -11,7 +11,8 @@
     "dev": "node --watch server/server.js"
   },
   "dependencies": {
-    "better-sqlite3": "^13.2.0",
+    "cors": "^2.8.6",
+    "dependencies": "^0.0.1",
     "express": "^5.3.0",
     "sequelize": "^6.37.8",
     "sqlite3": "^6.0.1"

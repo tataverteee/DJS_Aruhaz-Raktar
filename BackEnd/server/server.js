@@ -1,52 +1,39 @@
 import express from 'express'
-import sequelize from './db.js'
-import User from './models/User.js'
+import cors from 'cors' // engedi, hogy a frontend (másik port) hívhassa a backendet
+import sequelize from './db.js' // adatbázis-kapcsolat
+import User from './models/User.js' // felhasználó modell (users tábla)
 
+// Témánkénti route-ok (külön fájlokban)
 import stockRouter from './routes/stock.js'
 import itemsRouter from './routes/items.js'
 import purchaseRouter from './routes/purchase.js'
 
 const app = express()
-app.use(express.json())
 
-app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', '*')
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization')
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS')
-  if (req.method === 'OPTIONS') return res.sendStatus(204)
-  next()
-})
+app.use(cors()) // minden origin-t engedélyez (fejlesztéshez)
+app.use(express.json()) // a JSON kérés törzsét beolvassa a req.body-ba
 
+// Bejelentkezés: ha van ilyen username + password páros, visszaadja a felhasználót
 app.post('/api/login', async (req, res) => {
-  const { username, password } = req.body ?? {}
-  if (!username || !password) {
-    return res.status(400).json({ error: 'Add meg a felhasználónevet és a jelszót.' })
-  }
+  const { username, password } = req.body
   const user = await User.findOne({
     where: { username, password },
-    attributes: ['userId', 'username'],
+    attributes: ['userId', 'username'], // a jelszót nem küldjük vissza
   })
   if (!user) return res.status(401).json({ error: 'Hibás felhasználónév vagy jelszó.' })
-  res.json({ ok: true, user })
+  res.json({ user })
 })
 
-app.get('/api/login/users', async (req, res) => {
-  const users = await User.findAll({ attributes: ['userId', 'username', 'password'], order: [['userId', 'ASC']] })
-  res.json(users)
-})
-
-// Témánkénti routerek
+// Az /api/stock, /api/items és /api/purchase alatti kéréseket a saját router kezeli
 app.use('/api/stock', stockRouter)
 app.use('/api/items', itemsRouter)
 app.use('/api/purchase', purchaseRouter)
 
-app.use((err, req, res, next) => {
-  console.error(err)
-  res.status(500).json({ error: 'internal server error' })
-})
-
-// Create the table if it's missing, add the admin user, then start the server
+// Létrehozza a táblákat, ha még nincsenek
 await sequelize.sync()
+
+// Alap admin felhasználó (csak akkor jön létre, ha még nincs)
 await User.findOrCreate({ where: { username: 'admin' }, defaults: { password: 'admin' } })
 
-app.listen(3000, () => console.log('Server running on http://localhost:3000'))
+// Szerver indítása a 3000-es porton
+app.listen(3000)
